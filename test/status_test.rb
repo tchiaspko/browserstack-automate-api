@@ -18,25 +18,6 @@ require 'minitest/autorun'
 #  c.hook_into :webmock
 # end
 
-# browserstatck_plan = Browserstack::Automate::Api::Plan.get_plan
-# browserstatck_plan = Browserstack::Automate::Api::Plan.new
-
-# plan = Browserstack::Automate::Api::Plan::Client.new
-plan = Browserstack::Automate::Plan.new
-
-# pp plan
-print plan
-
-print "\n\n", plan.inspect
-# print "\nautomate_plan: ", plan.automate_plan
-# print "\nparallel_sessions_running:", plan.parallel_sessions_running
-# print "\nteam_parallel_sessions_max_allowed", plan.team_parallel_sessions_max_allowed
-# print "\nparallel_sessions_max_allowed", plan.parallel_sessions_max_allowed
-# print "\nparallel_sessions_max_allowed: ", plan.queued_sessions
-# print "\nqueued_sessions_max_allowed: ", plan.queued_sessions_max_allowed
-
-print "\n\n"
-
 status = Browserstack::Automate::Status.new
 # pp status
 # print "\nused_time: ", status.used_time

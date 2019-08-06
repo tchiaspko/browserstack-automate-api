@@ -11,7 +11,7 @@ end
 
 # This doesn't work yet
 # task default: :test
-task default: %i[rubocop rspec]
+task default: %i[rubocop test]
 
 require 'rubocop/rake_task'
 
