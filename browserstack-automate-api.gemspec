@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'browserstack-automate-api'
   spec.version       = Browserstack::Automate::Api::VERSION
   spec.authors       = ['Tony Chia']
-  spec.email         = ['tchia04@gmail.com']
+  spec.email         = ['tchia@spokeo.com']
 
   spec.summary       = ' Access Browserstack Automate API '
   spec.description   = ' RubyGem for https://www.browserstack.com/automate/rest-api '
@@ -37,7 +37,14 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'bundler', '~> 1.17.2'
+  spec.add_development_dependency 'minitest', '~> 5.11.3'
+  spec.add_development_dependency 'minitest-reporters', '~> 1.3.6'
+  spec.add_development_dependency 'pry', '~> 0.12.2'
   spec.add_development_dependency 'rake', '~> 12.3.2'
   spec.add_development_dependency 'rspec', '~> 3.8.0'
   spec.add_development_dependency 'rubocop', '~> 0.67.2'
+  spec.add_development_dependency 'vcr', '~> 5.0.0'
+  spec.add_development_dependency 'webmock', '~> 3.6.0'
+  spec.add_dependency 'faraday', '~> 0.15.4'
+  spec.add_dependency 'yajl-ruby', '~> 1.4.1'
 end
