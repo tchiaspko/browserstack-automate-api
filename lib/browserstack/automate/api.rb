@@ -11,14 +11,6 @@ require 'yajl'
 API_URL = "https://api.browserstack.com"
 API_VERSION = "5"
 
-module Browserstack
-  module Automate
-    module RubyApi
-      VERSION = '0.1.0'
-    end
-  end
-end
-
 def http_response_code_check(res) # rubocop:disable Metrics/CyclomaticComplexity
   case res.status.to_i
   when 200
