@@ -42,15 +42,17 @@ require 'browserstack/automate/sessions'
 ```
 
 After the libraries have been loaded, you can initialize with the following
-
+```
 Browserstack::Automate::RubyApi::VERSION
 Browserstack::Automate::Status.new
 Browserstack::Automate::Plan.new
 Browserstack::Automate::Projects.new
 Browserstack::Automate::Builds.new
 Browserstack::Automate::Sessions.new
+```
 
 ### Plan
+```
 plan = Browserstack::Automate::Plan.new
 pp plan
 print "\nautomate_plan: ", plan.automate_plan
@@ -59,8 +61,10 @@ print "\nteam_parallel_sessions_max_allowed", plan.team_parallel_sessions_max_al
 print "\nparallel_sessions_max_allowed", plan.parallel_sessions_max_allowed
 print "\nparallel_sessions_max_allowed: ", plan.queued_sessions
 print "\nqueued_sessions_max_allowed: ", plan.queued_sessions_max_allowed
+```
 
 ### Projects
+```
 spike_project=projects.get_project_by_name(project_name: 'spike')
 pp spike_project
 pp spike_project['id']
@@ -69,16 +73,22 @@ pp spike_project['group_id']
 pp spike_project['user_id']
 pp spike_project['created_at']
 pp spike_project['updated_at']
+```
 
 ### Status
+```
 status = Browserstack::Automate::Status.new
 print status
+```
 
 ### Builds
+```
 builds = Browserstack::Automate::Builds.new
 pp builds
+```
 
 ### Sessions
+```
 sessions==Browserstack::Automate::Sessions.new.get_sessions_by_build_name('browserstack_login_desktop-112')
 puts "get_sessions_by_build_name=", sessions
 print "\n\n"
@@ -91,6 +101,7 @@ print "\n\n"
 puts "Session: Update test result failed"
 update_result=Browserstack::Automate::Sessions.new.update_test_result(session_id: '2a94ee7370d9a0f1583097823b99540769298b95', test_result_status: 'failed', reason: 'failed reason')
 puts "update_result=",update_result
+```
 
 ## Development
 
