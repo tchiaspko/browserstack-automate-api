@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'faraday'
 require 'yaml'
 
-conn = Faraday.new(:url => 'http://www.example.com')
+conn = Faraday.new(url: 'http://www.example.com')
 
 # post payload as JSON instead of "www-form-urlencoded" encoding:
 response = conn.post do |req|

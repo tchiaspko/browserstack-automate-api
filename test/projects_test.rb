@@ -17,32 +17,32 @@ require 'minitest/autorun'
 projects = Browserstack::Automate::Projects.new
 
 # pp plan
-#print projects
+# print projects
 pp projects
 
-#puts "\n\n", projects
+# puts "\n\n", projects
 
 print "\n\n"
 
 puts "Testing get_project_id_by_name('spike')"
-id=projects.get_project_id_by_name(project_name: 'spike')
+id = projects.get_project_id_by_name(project_name: 'spike')
 puts "id=#{id}"
 
-id=projects.get_project_id_by_name(project_name: 'invalid Project')
+id = projects.get_project_id_by_name(project_name: 'invalid Project')
 puts "this should be empty id=#{id}"
 
 print "\n\n"
 puts "Testing get_project_by_name('spike')"
-spike_project=projects.get_project_by_name(project_name: 'spike')
+spike_project = projects.get_project_by_name(project_name: 'spike')
 puts "this should a project #{spike_project}"
 
 print "\n\n"
 puts "Testing get_project_by_name('invalid project name')"
-invalid_project=projects.get_project_by_name(project_name: 'invalid project name')
+invalid_project = projects.get_project_by_name(project_name: 'invalid project name')
 puts "this should an empty project #{invalid_project}"
 
 print "\n\n"
-puts "Testing spike_project members"
+puts 'Testing spike_project members'
 pp spike_project
 pp spike_project['id']
 pp spike_project['name']
@@ -52,22 +52,19 @@ pp spike_project['created_at']
 pp spike_project['updated_at']
 
 print "\n\n"
-puts "Testing spike_project members using .each"
+puts 'Testing spike_project members using .each'
 spike_project.each do |key, value|
   puts "#{key}: #{value}\n"
 end
 print "\n\n"
 
-
 puts "Testing get_project_by_name('BrowserStack') search by hash"
-bs_project=projects.get_project_by_name(project_name: 'BrowserStack')
+bs_project = projects.get_project_by_name(project_name: 'BrowserStack')
 puts "this should a project #{bs_project}"
 print "\n\n"
 
-
-puts "Testing project name: Untitled Project. Make API call(/automate/projects/<project-id>.json)"
-spike_project_builds=projects.get_builds_by_name(project_name: 'Untitled Project')
-puts "This should contains multiple project builds"
+puts 'Testing project name: Untitled Project. Make API call(/automate/projects/<project-id>.json)'
+spike_project_builds = projects.get_builds_by_name(project_name: 'Untitled Project')
+puts 'This should contains multiple project builds'
 pp spike_project_builds
 print "\n\n"
-

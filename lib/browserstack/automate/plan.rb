@@ -44,7 +44,7 @@ module Browserstack
       end
 
       def to_s
-        output = ''.dup
+        output = ''
         output << "automate_plan: #{@automate_plan}\n"
         output << "parallel_sessions_running: #{@parallel_sessions_running}\n"
         output << "team_parallel_sessions_max_allowed: #{@team_parallel_sessions_max_allowed}\n"

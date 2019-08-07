@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'browserstack-automate-api'
   spec.version       = Browserstack::Automate::Api::VERSION
   spec.authors       = ['Tony Chia']
-  spec.email         = ['tchia04@gmail.com']
+  spec.email         = ['tchia@spokeo.com']
 
   spec.summary       = ' Access Browserstack Automate API '
   spec.description   = ' RubyGem for https://www.browserstack.com/automate/rest-api '

@@ -27,9 +27,8 @@ module Browserstack
     #     }
     # ]
     # https://api.browserstack.com/automate/builds.json
-
     class Builds
-      #def get_all_builds()
+      # def get_all_builds()
       def initialize
         connection = Faraday.new(url: "#{API_URL}/automate/builds.json?limit=999") do |conn|
           conn.adapter Faraday.default_adapter # make requests with Net::HTTP
@@ -39,31 +38,28 @@ module Browserstack
         http_response_code_check response
         @all_builds = JSON.parse(response.body)
       end
-      
+
       def get_build_id_by_name(build_name)
-        found_build_id=''
+        found_build_id = ''
         @all_builds.each do |build|
-          if build['automation_build']['name'] == build_name
-            found_build_id=build['automation_build']['hashed_id']
-          end
+          found_build_id = build['automation_build']['hashed_id'] if build['automation_build']['name'] == build_name
         end
-        return found_build_id
+        found_build_id
       end
 
       # This is similar to the following URL but using build name
       # curl -u "username:accesskey" https://api.browserstack.com/automate/builds/<build-id>.json
       def get_build_by_name(build_name)
-        found_build={}
-        #@all_builds=self.get_all_builds
+        found_build = {}
+        # @all_builds=self.get_all_builds
         @all_builds.each do |build|
-          #if build['automation_build']['name'] == "#{build_name}"
-          if build['automation_build']['name'] == build_name
-            found_build=build['automation_build']
-          end
+          # if build['automation_build']['name'] == "#{build_name}"
+          found_build = build['automation_build'] if build['automation_build']['name'] == build_name
         end
-        return found_build
+        found_build
       end
 
+      # Sample build session JSON returned
       # {
       #     "build": {
       #         "automation_build": {
@@ -92,37 +88,21 @@ module Browserstack
       #         ]
       #     }
       # }
-      # def get_build_sessions_by_name(build_name:)
-      #   build_id=get_build_id_by_name(build_name)
-      #   connection = Faraday.new(url: "#{API_URL}/automate/builds/#{build_id}.json") do |conn|
-      #     conn.adapter Faraday.default_adapter # make requests with Net::HTTP
-      #     conn.basic_auth(ENV['BROWSERSTACK_USERNAME'], ENV['BROWSERSTACK_ACCESS_KEY'])
-      #   end
-      #   response = connection.get
-      #   @build_session = JSON.parse(response.body)
-      # end
-
       def get_build_sessions_by_name(build_name:)
-        build_id=get_build_id_by_name(build_name)
-        print "build_id=", build_id # when build_name is invalid, "HTTP Basic: Access denied." is returned
-        if build_id.length != 0
-          connection = Faraday.new(url: "#{API_URL}/automate/builds/#{build_id}.json") do |conn|
-            conn.adapter Faraday.default_adapter # make requests with Net::HTTP
-            conn.basic_auth(ENV['BROWSERSTACK_USERNAME'], ENV['BROWSERSTACK_ACCESS_KEY'])
-          end
-          response = connection.get
-          http_response_code_check response
-          # if response.status == "200"
-          @build_session = JSON.parse(response.body)["build"]["sessions"]
-          # else
-          #   raise "BrowserStack API HTTP response code is not 200"
-          # end
+        build_id = get_build_id_by_name(build_name)
+        # print 'build_id=', build_id # when build_name is invalid, "HTTP Basic: Access denied." is returned
+        return if build_id.empty?
 
+        connection = Faraday.new(url: "#{API_URL}/automate/builds/#{build_id}.json") do |conn|
+          conn.adapter Faraday.default_adapter # make requests with Net::HTTP
+          conn.basic_auth(ENV['BROWSERSTACK_USERNAME'], ENV['BROWSERSTACK_ACCESS_KEY'])
         end
-
+        response = connection.get
+        http_response_code_check response
+        @build_session = JSON.parse(response.body)['build']['sessions']
       end
 
-      def get_running_builds()
+      def get_running_builds # rubocop:disable Naming/AccessorMethodName
         connection = Faraday.new(url: "#{API_URL}/automate/builds.json?limit=999&status=running") do |conn|
           conn.adapter Faraday.default_adapter # make requests with Net::HTTP
           conn.basic_auth(ENV['BROWSERSTACK_USERNAME'], ENV['BROWSERSTACK_ACCESS_KEY'])
@@ -132,7 +112,7 @@ module Browserstack
         @all_running_builds = JSON.parse(response.body)
       end
 
-      def get_failed_builds()
+      def get_failed_builds # rubocop:disable Naming/AccessorMethodName
         connection = Faraday.new(url: "#{API_URL}/automate/builds.json?limit=999&status=failed") do |conn|
           conn.adapter Faraday.default_adapter # make requests with Net::HTTP
           conn.basic_auth(ENV['BROWSERSTACK_USERNAME'], ENV['BROWSERSTACK_ACCESS_KEY'])
@@ -141,7 +121,8 @@ module Browserstack
         http_response_code_check response
         @all_failed_builds = JSON.parse(response.body)
       end
-      def get_done_builds()
+
+      def get_done_builds # rubocop:disable Naming/AccessorMethodName
         connection = Faraday.new(url: "#{API_URL}/automate/builds.json?limit=999&status=done") do |conn|
           conn.adapter Faraday.default_adapter # make requests with Net::HTTP
           conn.basic_auth(ENV['BROWSERSTACK_USERNAME'], ENV['BROWSERSTACK_ACCESS_KEY'])
@@ -151,7 +132,7 @@ module Browserstack
         @all_done_builds = JSON.parse(response.body)
       end
 
-      def get_timeout_builds()
+      def get_timeout_builds # rubocop:disable Naming/AccessorMethodName
         connection = Faraday.new(url: "#{API_URL}/automate/builds.json?limit=999&status=timeout") do |conn|
           conn.adapter Faraday.default_adapter # make requests with Net::HTTP
           conn.basic_auth(ENV['BROWSERSTACK_USERNAME'], ENV['BROWSERSTACK_ACCESS_KEY'])
@@ -160,7 +141,6 @@ module Browserstack
         http_response_code_check response
         @all_timeout_builds = JSON.parse(response.body)
       end
-
     end # Builds
   end # Automate
 end # Browserstack

@@ -22,45 +22,39 @@ module Browserstack
     # https://api.browserstack.com/automate/projects.json
     #
     class Projects
-      #attr_reader :id, :name, :group_id, :user_id, :created_at, :updated_at
+      # attr_reader :id, :name, :group_id, :user_id, :created_at, :updated_at
 
-      def initialize()
+      def initialize
         connection = Faraday.new(url: "#{API_URL}/automate/projects.json") do |conn|
           conn.adapter Faraday.default_adapter # make requests with Net::HTTP
           conn.basic_auth(ENV['BROWSERSTACK_USERNAME'], ENV['BROWSERSTACK_ACCESS_KEY'])
         end
         response = connection.get
         @all_projects = JSON.parse(response.body)
-
-
       end
 
       def get_project_id_by_name(project_name:)
-        found_project_id=''
+        found_project_id = ''
         @all_projects.each do |project|
-          if project["name"] == project_name
-            found_project_id=project["id"]
-          end
+          found_project_id = project['id'] if project['name'] == project_name
         end
-        return found_project_id
+        found_project_id
       end
 
       # This is similar to the following URL but searching the project name in the hash
       # curl -u "username:accesskey" https://api.browserstack.com/automate/projects/<project-id>.json
       def get_project_by_name(project_name:)
-        found_project={}
+        found_project = {}
         @all_projects.each do |project|
-          if project["name"] == project_name
-            found_project=project
-          end
+          found_project = project if project['name'] == project_name
         end
-        return found_project
+        found_project
       end
 
       # This is similar to the following URL but using project name by making another API call
       # https://api.browserstack.com/automate/projects/788634.json
       def get_builds_by_name(project_name:)
-        project_id=get_project_id_by_name(project_name: project_name)
+        project_id = get_project_id_by_name(project_name: project_name)
         connection = Faraday.new(url: "#{API_URL}/automate/projects/#{project_id}.json") do |conn|
           conn.adapter Faraday.default_adapter # make requests with Net::HTTP
           conn.basic_auth(ENV['BROWSERSTACK_USERNAME'], ENV['BROWSERSTACK_ACCESS_KEY'])
@@ -68,7 +62,6 @@ module Browserstack
         response = connection.get
         @project_builds = JSON.parse(response.body)
       end
-
     end # Projects
   end # Automate
 end # Browserstack

@@ -31,13 +31,10 @@ module Browserstack
         @total_available_time = @status['total_available_time']
         @running_sessions = @status['running_sessions']
         @sessions_limit = @status['sessions_limit']
-
-        #my_hash = my_hash.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
-
       end
 
       def to_s
-        output = ''.dup
+        output = ''
         output << "used_time: #{@used_time}\n"
         output << "total_available_time: #{@total_available_time}\n"
         output << "running_sessions: #{@running_sessions}\n"

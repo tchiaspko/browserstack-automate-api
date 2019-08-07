@@ -4,12 +4,9 @@ inherit_from: .rubocop_todo.yml
 
 AllCops:
   TargetRubyVersion: 2.6.2
-  Exclude:
-    - 'lib/browserstack/automate/api/status.rb'
-    - 'lib/browserstack/automate/api/projects.rb'
-    - 'lib/browserstack/automate/api/builds.rb'
-    - 'lib/browserstack/automate/api/plan.rb'
-    - 'lib/plan/client.rb'
+#  Exclude:
+#    - 'spec/**/*.rb'
+#    - 'test/**/*.rb'
 
 Metrics/LineLength:
   Max: 140
