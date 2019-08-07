@@ -26,4 +26,4 @@ tmp
 .DS_Store
 *.org
 *.bak
-.idea/
+.idea

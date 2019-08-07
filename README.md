@@ -67,6 +67,7 @@ print "\nqueued_sessions_max_allowed: ", plan.queued_sessions_max_allowed
 
 ### Projects
 ```
+projects= Browserstack::Automate::Project.new
 spike_project=projects.get_project_by_name(project_name: 'spike')
 pp spike_project
 pp spike_project['id']
