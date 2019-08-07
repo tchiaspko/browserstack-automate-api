@@ -42,6 +42,7 @@ require 'browserstack/automate/sessions'
 ```
 
 After the libraries have been loaded, you can initialize with the following
+
 ```
 Browserstack::Automate::RubyApi::VERSION
 Browserstack::Automate::Status.new
@@ -53,6 +54,7 @@ Browserstack::Automate::Sessions.new
 
 ### Plan
 ```
+
 plan = Browserstack::Automate::Plan.new
 pp plan
 print "\nautomate_plan: ", plan.automate_plan
