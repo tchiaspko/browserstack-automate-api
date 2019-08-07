@@ -55,7 +55,7 @@ plugins:
   rubocop:
     enabled: true
      # Avaiable channels: https://docs.codeclimate.com/docs/rubocop
-    channel: "rubocop-0-67"
+    channel: "rubocop-0-71"
   duplication:
     enabled: true
     config:

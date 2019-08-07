@@ -42,7 +42,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry', '~> 0.12.2'
   spec.add_development_dependency 'rake', '~> 12.3.2'
   spec.add_development_dependency 'rspec', '~> 3.8.0'
-  spec.add_development_dependency 'rubocop', '~> 0.67.2'
+  spec.add_development_dependency 'rubocop', '~> 0.71.0'
   spec.add_development_dependency 'vcr', '~> 5.0.0'
   spec.add_development_dependency 'webmock', '~> 3.6.0'
   spec.add_dependency 'faraday', '~> 0.9.2'
