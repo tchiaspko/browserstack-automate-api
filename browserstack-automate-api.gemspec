@@ -36,6 +36,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
+  spec.add_development_dependency 'bump'
   spec.add_development_dependency 'bundler', '~> 1.17.2'
   spec.add_development_dependency 'minitest', '~> 5.11.3'
   spec.add_development_dependency 'minitest-reporters', '~> 1.3.6'
@@ -45,7 +46,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop', '~> 0.71.0'
   spec.add_development_dependency 'vcr', '~> 5.0.0'
   spec.add_development_dependency 'webmock', '~> 3.6.0'
-  spec.add_development_dependency 'bump'
   spec.add_dependency 'faraday', '~> 0.9.2'
   spec.add_dependency 'yajl-ruby', '~> 1.4.1'
 end
