@@ -7,6 +7,11 @@ echo "Setup under vendor/bundle folder"
   bundle install --jobs=3 --retry=3 --path="${BUNDLE_PATH:-vendor/bundle}"
 }
 
+function run_rubocop {
+  echo "Running Rubocop"
+  rake rubocop
+}
+
 function install_geminabox_plugin {
   echo "Installing geminabox"
   gem install geminabox
@@ -54,8 +59,9 @@ function push_version_change_back_to_github {
 }
 
 setup_bundle
+run_rubocop
 install_geminabox_plugin
 increment_version
 build_package
-upload_gem_pkg
 push_version_change_back_to_github
+upload_gem_pkg
