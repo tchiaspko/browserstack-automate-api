@@ -24,7 +24,7 @@ function build_package {
 }
 
 function upload_gem_pkg {
-  LATEST_GEM_PKG=$(find ./pkg -type f -print0 | xargs ls -tr | tail -n 1)
+  LATEST_GEM_PKG=$(find ./pkg -type f -name "*.gem" -print0 | xargs -0 ls -tr | tail -n 1)
   echo "Uploading the latest gem package: ${LATEST_GEM_PKG} to http://gems.spokeo.com"
   gem inabox "${LATEST_GEM_PKG}" --host http://gems.spokeo.com | tee upload_output.log
   echo "Checking upload result..."
