@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 function setup_bundle {
 echo "Setup under vendor/bundle folder"
@@ -17,7 +17,7 @@ function increment_version {
   bump patch 
 }
 
-function build_pkg {
+function build_package {
   rake build
 }
 
@@ -35,9 +35,20 @@ function upload_gem_pkg {
   fi
 }
 
+function push_version_change_back_to_github {
+  echo "Finding the changed files. Should be only the ./lib/browserstack/automate/api/version.rb"
+  git status
+  echo "Adding changed file to be commited"
+  git add -u
+  echo "commit the change"
+  git commit -m "Updated from $BUILD_URL"
+  echo "Push to remote git repo"
+  git push origin master
+}
 
 setup_bundle
 install_geminabox_plugin
 increment_version
 build_package
 upload_gem_pkg
+push_version_change_back_to_github
