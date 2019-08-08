@@ -20,7 +20,7 @@ function increment_version {
 }
 
 function build_package {
-  bundle exec rake build
+  rake build
 }
 
 function upload_gem_pkg {
