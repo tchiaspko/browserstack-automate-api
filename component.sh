@@ -17,6 +17,10 @@ function increment_version {
   bump patch 
 }
 
+function build_pkg {
+  rake build
+}
+
 function upload_gem_pkg {
   LATEST_GEM_PKG=$(find ./pkg -type f -print0 | xargs ls -tr | tail -n 1)
   echo "Uploading the latest gem package: ${LATEST_GEM_PKG} to http://gems.spokeo.com"
@@ -35,4 +39,5 @@ function upload_gem_pkg {
 setup_bundle
 install_geminabox_plugin
 increment_version
+build_package
 upload_gem_pkg
