@@ -9,22 +9,24 @@ echo "Setup under vendor/bundle folder"
 
 function install_geminabox_plugin {
   echo "Installing geminabox"
-  gem install geminabox
+  gem install geminabox --install-dir ./vendor/bundle/
 }
 
 function increment_version {
+  echo "Installing bump"
+  gem install bump --install-dir ./vendor/bundle/
   echo "Increment the version number"
-  bump patch 
+  bundle exec bump patch --no-commit
 }
 
 function build_package {
-  rake build
+  bundle exec rake build
 }
 
 function upload_gem_pkg {
   LATEST_GEM_PKG=$(find ./pkg -type f -print0 | xargs ls -tr | tail -n 1)
   echo "Uploading the latest gem package: ${LATEST_GEM_PKG} to http://gems.spokeo.com"
-  gem inabox "${LATEST_GEM_PKG}" --host http://gems.spokeo.com | tee upload_output.txt
+  bundle exec gem inabox "${LATEST_GEM_PKG}" --host http://gems.spokeo.com | tee upload_output.txt
   echo "Checking upload result..."
   RESULT=$(grep "received and indexed" upload_output.txt)
   if [ "$RESULT" != "" ]; then
