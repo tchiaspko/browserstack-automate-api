@@ -1,7 +1,9 @@
 #!/bin/bash
 
 function setup_bundle {
-  echo "Installing all gems to vendor/bundle folder"
+echo "Setup under vendor/bundle folder"
+  gem install bundler -v 1.17.2
+  bundle _1.17.2_ install
   bundle install --jobs=3 --retry=3 --path="${BUNDLE_PATH:-vendor/bundle}"
 }
 
@@ -16,7 +18,7 @@ function increment_version {
 }
 
 function upload_gem_pkg {
-  LATEST_GEM_PKG=$(find ./pkg -type f | xargs ls -tr | tail -n 1)
+  LATEST_GEM_PKG=$(find ./pkg -type f -print0 | xargs ls -tr | tail -n 1)
   echo "Uploading the latest gem package: ${LATEST_GEM_PKG} to http://gems.spokeo.com"
   gem inabox "${LATEST_GEM_PKG}" --host http://gems.spokeo.com | tee upload_output.txt
   echo "Checking upload result..."
