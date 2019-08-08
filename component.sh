@@ -9,14 +9,14 @@ echo "Setup under vendor/bundle folder"
 
 function install_geminabox_plugin {
   echo "Installing geminabox"
-  gem install geminabox --install-dir ./vendor/bundle/
+  gem install geminabox
 }
 
 function increment_version {
   echo "Installing bump"
-  gem install bump --install-dir ./vendor/bundle/
+  gem install bump
   echo "Increment the version number"
-  bundle exec bump patch --no-commit
+  bump patch --no-commit
 }
 
 function build_package {
@@ -26,9 +26,9 @@ function build_package {
 function upload_gem_pkg {
   LATEST_GEM_PKG=$(find ./pkg -type f -print0 | xargs ls -tr | tail -n 1)
   echo "Uploading the latest gem package: ${LATEST_GEM_PKG} to http://gems.spokeo.com"
-  bundle exec gem inabox "${LATEST_GEM_PKG}" --host http://gems.spokeo.com | tee upload_output.txt
+  gem inabox "${LATEST_GEM_PKG}" --host http://gems.spokeo.com | tee upload_output.log
   echo "Checking upload result..."
-  RESULT=$(grep "received and indexed" upload_output.txt)
+  RESULT=$(grep "received and indexed" upload_output.log)
   if [ "$RESULT" != "" ]; then
     echo "Uplaod Successful. You should see the new verson on https://gems.spokeo.com"
   else
