@@ -3,7 +3,7 @@
 module Browserstack
   module Automate
     module Api
-      VERSION = '0.1.3'
+      VERSION = '0.1.4'
     end
   end
 end
