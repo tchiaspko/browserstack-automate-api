@@ -7,4 +7,3 @@ require_relative 'browserstack/automate/projects'
 require_relative 'browserstack/automate/status'
 require_relative 'browserstack/automate/builds'
 require_relative 'browserstack/automate/sessions'
-
