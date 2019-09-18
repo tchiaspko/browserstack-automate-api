@@ -8,4 +8,3 @@ require_relative 'browserstack/automate/status'
 require_relative 'browserstack/automate/builds'
 require_relative 'browserstack/automate/sessions'
 
-#this should cause an error in rubocop
